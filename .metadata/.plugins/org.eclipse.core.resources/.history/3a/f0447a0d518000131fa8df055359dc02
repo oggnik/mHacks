@@ -1,11 +1,4 @@
 package com.m4.purdue.mhacks.findthataddress;
-/*import System;
-import Google.GData.Client;
-import Google.GData.Documents;
-*/
-import java.io.BufferedReader;
-
-import org.apache.http.client.HttpClient;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,39 +25,7 @@ public class OCRActivity extends Activity {
 		//Just display the text for now
 		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
 	}
-		//Set up HTTP Client
-		/*String imageTextUrl = file.getExportLinks().get(filepath);	
-		HttpClient client = new DefaultHttpClient();
-		HttpGet get = new HttpGet(imageTextUrl);
-		get.setHeader("Authorization"< "Bearer" + token);
-		HttpResponse response = client.execute(get);
-		
-		//Read into buffer
-		StringBuffer sb = new StringBUffer();
-		
-		BufferedReader in=null;
-		try{
-			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			String str;
-			while((str = in.readLine()) !=null){
-				sb.append(str);
-			}
-			
-		}
-		finally{
-			if(in != null) {
-				in.close();
-			}
-		}
-	}
 
-	//Send data to new Intent to display
-	Intent intent = new Intent(UploadImageService.this, VerifyTextActivity.class);
-	intent.putExtra("ocrText", sb.toString());
-	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	startActivity(intent);
-	*/
-	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
