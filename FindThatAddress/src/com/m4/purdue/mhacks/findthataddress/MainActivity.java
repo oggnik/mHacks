@@ -3,6 +3,7 @@ package com.m4.purdue.mhacks.findthataddress;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -33,7 +34,8 @@ public class MainActivity extends Activity {
     	//Create an intent
     	Intent intent = new Intent(this, OCRActivity.class);
     	
-    	intent.putExtra(PATH, "path/to/file");
+    	Log.d("MainActivity", "Calling OCRActivity");
+    	intent.putExtra(PATH, "/mnt/sdcard/DCIM/100LGDSC/CAM00023.jpg");
     	startActivity(intent);
     }
     

@@ -3,26 +3,29 @@ package com.m4.purdue.mhacks.findthataddress;
 import Google.GData.Client;
 import Google.GData.Documents;
 */
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import org.apache.http.client.HttpClient;
-
-import com.googlecode.tesseract.android.TessBaseAPI;
-
-import android.media.ExifInterface;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.googlecode.tesseract.android.TessBaseAPI;
 
 public class OCRActivity extends Activity {
 
@@ -32,6 +35,8 @@ public class OCRActivity extends Activity {
 		setContentView(R.layout.activity_ocr);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		Log.d("OCRActivity", "OCRActivity onCreate");
 		
 		//Get the image
 		Intent intent = getIntent();
@@ -72,57 +77,54 @@ public class OCRActivity extends Activity {
 			}
 			bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 			
-			//Do the OCR
+			Log.d("OCRActivity", "Bitmap rotated");
 			
+			final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/FTA/";
+			
+			File dir = new File(DATA_PATH + "tessdata");
+		    dir.mkdirs();
+
+		    //If the traineddata doesn't exist yet, copy it from the assets
+		    if (!(new File(DATA_PATH + "tessdata/eng.traineddata")).exists()) {
+		        try {
+		        	Log.d("OCRActivity ", "Copying Trained data");
+		            AssetManager assetManager = getAssets();
+		            InputStream in = assetManager.open("tessdata/eng.traineddata");
+		            OutputStream out = new FileOutputStream(DATA_PATH
+		                    + "tessdata/eng.traineddata");
+
+		            byte[] buf = new byte[1024];
+		            int len;
+		            while ((len = in.read(buf)) > 0) {
+		                out.write(buf, 0, len);
+		            }
+		            in.close();
+		            out.close();
+		        } catch (IOException e) {}
+		    }
+			Log.d("OCRActivity ", "API calls");
+		    Toast.makeText(this, "API calls", Toast.LENGTH_SHORT).show();
+		    
+			//Do the OCR
 			TessBaseAPI baseApi = new TessBaseAPI();
 			// DATA_PATH = Path to the storage
 			// lang = for which the language data exists, usually "eng"
-			baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
+			baseApi.init(DATA_PATH, "eng");
 			// Eg. baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
 			baseApi.setImage(bitmap);
 			//The text
 			String recognizedText = baseApi.getUTF8Text();
+			Log.d("OCRActivity ", recognizedText);
 			baseApi.end();
 			
-			
+			Toast.makeText(this, recognizedText, Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			Log.d("OCRActivity", "OCRActivity Catch Exception: " + e);
 			e.printStackTrace();
 		}
 		
 	}
-		//Set up HTTP Client
-		/*String imageTextUrl = file.getExportLinks().get(filepath);	
-		HttpClient client = new DefaultHttpClient();
-		HttpGet get = new HttpGet(imageTextUrl);
-		get.setHeader("Authorization"< "Bearer" + token);
-		HttpResponse response = client.execute(get);
-		
-		//Read into buffer
-		StringBuffer sb = new StringBUffer();
-		
-		BufferedReader in=null;
-		try{
-			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-			String str;
-			while((str = in.readLine()) !=null){
-				sb.append(str);
-			}
-			
-		}
-		finally{
-			if(in != null) {
-				in.close();
-			}
-		}
-	}
-
-	//Send data to new Intent to display
-	Intent intent = new Intent(UploadImageService.this, VerifyTextActivity.class);
-	intent.putExtra("ocrText", sb.toString());
-	intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	startActivity(intent);
-	*/
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
