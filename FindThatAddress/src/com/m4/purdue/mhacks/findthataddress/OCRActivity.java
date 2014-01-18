@@ -40,14 +40,16 @@ public class OCRActivity extends Activity {
 		
 		//Get the image
 		Intent intent = getIntent();
+		Log.d("OCRActivity", "Got the intent");
 		String filePath = intent.getStringExtra(MainActivity.PATH);
-		//Just display the text for now
+		
 		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
+		
 		
 		try {
 			
 			Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-			
+			Log.d("OCRActivity", "decoded bitmap");
 			ExifInterface exif = new ExifInterface(filePath);
 			int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
 			
@@ -109,16 +111,21 @@ public class OCRActivity extends Activity {
 			TessBaseAPI baseApi = new TessBaseAPI();
 			// DATA_PATH = Path to the storage
 			// lang = for which the language data exists, usually "eng"
+			Log.d("OCRActivity ", "init");
 			baseApi.init(DATA_PATH, "eng");
 			// Eg. baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
+			Log.d("OCRActivity ", "setImage");
 			baseApi.setImage(bitmap);
 			//The text
+			Log.d("OCRActivity ", "get text");
 			String recognizedText = baseApi.getUTF8Text();
 			Log.d("OCRActivity ", recognizedText);
 			baseApi.end();
 			
 			Toast.makeText(this, recognizedText, Toast.LENGTH_SHORT).show();
-		} catch (IOException e) {
+			Map map = new Map();
+			map.mapIt(recognizedText);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.d("OCRActivity", "OCRActivity Catch Exception: " + e);
 			e.printStackTrace();
