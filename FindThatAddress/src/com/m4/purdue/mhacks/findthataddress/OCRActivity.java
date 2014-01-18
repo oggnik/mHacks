@@ -17,6 +17,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -122,13 +123,14 @@ public class OCRActivity extends Activity {
 			Log.d("OCRActivity ", recognizedText);
 			baseApi.end();
 			
-			Toast.makeText(this, recognizedText, Toast.LENGTH_SHORT).show();
-			Map map = new Map();
-			map.mapIt(recognizedText);
+			//Map map = new Map();
+			//map.mapIt(recognizedText);
+			Intent mapIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" + recognizedText));
+			startActivity(mapIntent);
+			Log.d("OCRActivity ", "Map Call");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.d("OCRActivity", "OCRActivity Catch Exception: " + e);
-			e.printStackTrace();
 		}
 		
 	}

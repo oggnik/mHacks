@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, OCRActivity.class);
     	
     	Log.d("MainActivity", "Calling OCRActivity");
-    	intent.putExtra(PATH, "/mnt/sdcard/DCIM/100LGDSC/CAM00023.jpg");
+    	intent.putExtra(PATH, "/mnt/sdcard/DCIM/100LGDSC/CAM00024.jpg");
     	startActivity(intent);
     }
     
