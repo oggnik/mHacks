@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
+		<item value="258" key="DIALOG_Y_ORIGIN"/>
+		<item value="416" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>
