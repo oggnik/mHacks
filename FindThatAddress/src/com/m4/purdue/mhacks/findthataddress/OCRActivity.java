@@ -37,6 +37,11 @@ public class OCRActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		/*
+		 * Inspired greatly by
+		 * http://gaut.am/making-an-ocr-android-app-using-tesseract/
+		 */
+		
 		Log.d("OCRActivity", "OCRActivity onCreate");
 		
 		//Get the image
