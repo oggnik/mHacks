@@ -1,10 +1,14 @@
 package com.m4.purdue.mhacks.findthataddress;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
+	public final static String EXTRA_MESSAGE = "com.m4.purdue.mhacks.findthataddress.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,20 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    
+    /**
+     * Called when the user hits the send button
+     * @param view
+     */
+    public void sendMessage(View view) {
+    	//Create an intent
+    	Intent intent = new Intent(this, DisplayMessageActivity.class);
+    	
+    	//Get the text of the field and add it to the intent 
+    	EditText editText = (EditText) findViewById(R.id.edit_message);
+    	String message = editText.getText().toString();
+    	intent.putExtra(EXTRA_MESSAGE, message);
     }
     
 }

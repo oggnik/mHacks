@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.m4.purdue.mhacks.findthataddress.DisplayMessageActivity"
+            android:label="@string/title_activity_display_message"
+            android:parentActivityName="com.m4.purdue.mhacks.findthataddress.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.m4.purdue.mhacks.findthataddress.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
