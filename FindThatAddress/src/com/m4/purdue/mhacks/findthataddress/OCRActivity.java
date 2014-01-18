@@ -47,7 +47,7 @@ public class OCRActivity extends Activity {
 		//Get the image
 		Intent intent = getIntent();
 		Log.d("OCRActivity", "Got the intent");
-		String filePath = intent.getStringExtra(MainActivity.PATH);
+		String filePath = intent.getStringExtra(MainActivity.IMAGE_PATH);
 		
 		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
 		
@@ -82,8 +82,9 @@ public class OCRActivity extends Activity {
 				
 				//Rotating Bitmap & convert to ARGB_8888, required by tess
 				bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, mtx, false);
-				bitmap = getResizedBitmap(bitmap, 350);
 			}
+			bitmap = getResizedBitmap(bitmap, 350);
+			Log.d("OCRActivity", "Bitmap width: " + bitmap.getWidth());
 			bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 			
 			Log.d("OCRActivity", "Bitmap rotated");
@@ -114,7 +115,6 @@ public class OCRActivity extends Activity {
 		        }
 		    }
 			Log.d("OCRActivity ", "API calls");
-		    Toast.makeText(this, "API calls", Toast.LENGTH_SHORT).show();
 		    
 			//Do the OCR
 			TessBaseAPI baseApi = new TessBaseAPI();
