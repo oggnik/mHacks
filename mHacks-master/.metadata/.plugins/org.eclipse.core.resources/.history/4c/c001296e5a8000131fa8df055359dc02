@@ -1,0 +1,29 @@
+package com.m4.purdue.mhacks.findthataddress;
+import android.content.Context;
+import android.content.pm.PackageManager;
+
+import android.hardware.Camera;
+
+import android.hardware.Camera.Parameters;
+
+
+public class ActivateCamera extends MainActivity{
+	/** Check if this device has a camera */
+	private static Context context;
+	//protocols for creating context
+	public void onCreate(){
+		super.onCreate();
+		MainActivity.this = getApplicationContext();
+	}
+	
+	private boolean checkCameraHardware(Context context) {
+	    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+	        // this device has a camera
+	        return true;
+	    } else {
+	        // no camera on this device
+	        return false;
+	    }
+	}
+	
+}

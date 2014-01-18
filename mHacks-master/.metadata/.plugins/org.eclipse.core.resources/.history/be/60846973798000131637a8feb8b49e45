@@ -1,0 +1,5 @@
+package com.m4.purdue.mhacks.findthataddress;
+
+public class ShootAndCropActivity extends Activity implements OnClickListener{
+    
+}

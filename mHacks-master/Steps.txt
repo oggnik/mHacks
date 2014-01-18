@@ -1,0 +1,5 @@
+Steps:
+1) Take/Load a picture
+2) Select the region where the address is.
+3) Retrieve the text using the Google Drive API
+4) Show the location in Google Maps

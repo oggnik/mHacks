@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "baseapitester", "baseapitester\baseapitester.vcproj", "{5B03B62F-528E-4B05-949B-BDD0706B70AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		DLL Debug|Win32 = DLL Debug|Win32
+		DLL Release|Win32 = DLL Release|Win32
+		LIB Debug|Win32 = LIB Debug|Win32
+		LIB Release|Win32 = LIB Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.DLL Debug|Win32.ActiveCfg = DLL_Debug|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.DLL Debug|Win32.Build.0 = DLL_Debug|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.DLL Release|Win32.ActiveCfg = DLL_Release|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.DLL Release|Win32.Build.0 = DLL_Release|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.LIB Debug|Win32.ActiveCfg = LIB_Debug|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.LIB Debug|Win32.Build.0 = LIB_Debug|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.LIB Release|Win32.ActiveCfg = LIB_Release|Win32
+		{5B03B62F-528E-4B05-949B-BDD0706B70AB}.LIB Release|Win32.Build.0 = LIB_Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
