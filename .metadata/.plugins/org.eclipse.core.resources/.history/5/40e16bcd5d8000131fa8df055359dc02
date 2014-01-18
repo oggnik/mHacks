@@ -19,7 +19,7 @@ public class AppContext extends Application{
 	public static Context getAppContext(){
 		return AppContext.context;
 	}
-	private boolean checkCameraHardware(Context context) {
+	/*private boolean checkCameraHardware(Context context) {
 	    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
 	        // this device has a camera
 	        return true;
@@ -28,5 +28,5 @@ public class AppContext extends Application{
 	        return false;
 	    }
 	}
-
+*/	
 }
