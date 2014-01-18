@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.m4.purdue.mhacks.findthataddress.MESSAGE";
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
      * @param view
      */
     public void sendMessage(View view) {
+    	Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
     	//Create an intent
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
     	
@@ -36,6 +38,7 @@ public class MainActivity extends Activity {
     	EditText editText = (EditText) findViewById(R.id.edit_message);
     	String message = editText.getText().toString();
     	intent.putExtra(EXTRA_MESSAGE, message);
+    	System.out.println("Send Message");
     }
     
 }
