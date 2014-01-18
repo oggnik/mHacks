@@ -1,4 +1,4 @@
-package com.m4.purdue.mhacks.findthataddress;
+/*package com.m4.purdue.mhacks.findthataddress;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Camera;
@@ -42,4 +42,4 @@ public void saveToFile(String message){
 		
 	}
 
-}
+}*/

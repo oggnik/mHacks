@@ -125,7 +125,7 @@ public class OCRActivity extends Activity {
 			
 			//Map map = new Map();
 			//map.mapIt(recognizedText);
-			Intent mapIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?saddr=" + recognizedText));
+			Intent mapIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?q=" + recognizedText));
 			startActivity(mapIntent);
 			Log.d("OCRActivity ", "Map Call");
 		} catch (Exception e) {
