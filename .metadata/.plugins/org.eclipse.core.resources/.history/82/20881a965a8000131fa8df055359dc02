@@ -12,7 +12,7 @@ public class ActivateCamera extends MainActivity{
 	private static Context context;
 	//protocols for creating context
 	public void onCreate(){
-		super.onCreate(null);
+		super.onCreate();
 		ActivateCamera.context = getApplicationContext();
 	}
 	

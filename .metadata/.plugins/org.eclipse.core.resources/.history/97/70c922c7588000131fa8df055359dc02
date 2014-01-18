@@ -1,21 +1,13 @@
-package com.m4.purdue.mhacks.findthataddress;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
+package com.m4.purdue.mhacks.findthataddress;
 import android.hardware.Camera;
 
 import android.hardware.Camera.Parameters;
 
 
-public class ActivateCamera extends MainActivity{
+public class ActivateCamera extends CameraPart{
 	/** Check if this device has a camera */
-	private static Context context;
-	//protocols for creating context
-	public void onCreate(){
-		super.onCreate(null);
-		ActivateCamera.context = getApplicationContext();
-	}
-	
 	private boolean checkCameraHardware(Context context) {
 	    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
 	        // this device has a camera
@@ -25,5 +17,4 @@ public class ActivateCamera extends MainActivity{
 	        return false;
 	    }
 	}
-	
 }
