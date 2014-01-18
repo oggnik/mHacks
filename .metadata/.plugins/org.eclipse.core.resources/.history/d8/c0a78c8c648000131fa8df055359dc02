@@ -1,10 +1,10 @@
 package com.m4.purdue.mhacks.findthataddress;
 import android.content.Context;
-
+import android.content.pm.PackageManager;
 
 
 import android.app.*;
-
+import android.content.*;
 
 
 public class AppContext extends Application{
@@ -19,7 +19,7 @@ public class AppContext extends Application{
 	public static Context getAppContext(){
 		return AppContext.context;
 	}
-	/*private boolean checkCameraHardware(Context context) {
+	private boolean checkCameraHardware(Context context) {
 	    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
 	        // this device has a camera
 	        return true;
@@ -27,6 +27,6 @@ public class AppContext extends Application{
 	        // no camera on this device
 	        return false;
 	    }
-	}*/
+	}
 
 }
