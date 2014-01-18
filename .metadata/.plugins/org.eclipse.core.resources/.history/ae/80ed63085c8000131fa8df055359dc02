@@ -38,8 +38,9 @@ public class MainActivity extends Activity {
     	startActivity(intent);
     }
     
-   /* public void testContext(){
+    public void testContext(){
     	Context c1 = new Context();
-    }*/
+    }
+    }
     
 }
