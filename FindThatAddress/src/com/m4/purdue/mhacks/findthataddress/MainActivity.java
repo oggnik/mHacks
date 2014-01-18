@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
@@ -35,12 +36,10 @@ public class MainActivity extends Activity {
     	Intent intent = new Intent(this, OCRActivity.class);
     	
     	Log.d("MainActivity", "Calling OCRActivity");
-    	intent.putExtra(PATH, "/mnt/sdcard/DCIM/100LGDSC/CAM00028.jpg");
+    	EditText editText = (EditText) findViewById(R.id.edit_message);
+        String picNumber = editText.getText().toString();
+    	intent.putExtra(PATH, "/mnt/sdcard/DCIM/100LGDSC/CAM000" + picNumber + ".jpg");
     	startActivity(intent);
     }
-    
-   /* public void testContext(){
-    	Context c1 = new Context();
-    }*/
     
 }

@@ -77,6 +77,7 @@ public class OCRActivity extends Activity {
 				
 				//Rotating Bitmap & convert to ARGB_8888, required by tess
 				bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, mtx, false);
+				bitmap = getResizedBitmap(bitmap, 350);
 			}
 			bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 			
@@ -103,7 +104,9 @@ public class OCRActivity extends Activity {
 		            }
 		            in.close();
 		            out.close();
-		        } catch (IOException e) {}
+		        } catch (IOException e) {
+		        	//Do nothing
+		        }
 		    }
 			Log.d("OCRActivity ", "API calls");
 		    Toast.makeText(this, "API calls", Toast.LENGTH_SHORT).show();
@@ -133,6 +136,23 @@ public class OCRActivity extends Activity {
 			Log.d("OCRActivity", "OCRActivity Catch Exception: " + e);
 		}
 		
+	}
+	
+	private Bitmap getResizedBitmap(Bitmap image, int maxDimension) {
+		int width = image.getWidth();
+		int height = image.getHeight();
+		//Ratio is > 0 if width is bigger than height
+		double ratio = width / height;
+		if (ratio > 0) {
+			width = maxDimension;
+			//Keep the aspect ratio
+			height = (int) (width / ratio);
+		} else {
+			height = maxDimension;
+			//Keep the aspect ratio
+			width = (int) (height / ratio);
+		}
+		return Bitmap.createScaledBitmap(image, width, height, true);
 	}
 	
 	/**
