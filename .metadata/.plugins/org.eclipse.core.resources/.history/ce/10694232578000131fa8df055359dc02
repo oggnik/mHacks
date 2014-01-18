@@ -1,5 +1,5 @@
-//<uses-permission android:name="android.permission.CAMERA" />
-//<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 package com.m4.purdue.mhacks.findthataddress;
 
 import android.hardware.Camera;
@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.pm.*;
 /* 1. Open the app, the camera should be turned on. In this case, 
  * there are 2 choices: 1) take a photo via camera. 2) pick up a 
  * photo from the library
@@ -62,9 +61,20 @@ final void	 takePicture(Camera.ShutterCallback shutter, Camera.PictureCallback r
 Equivalent to takePicture(shutter, raw, null, jpeg).
 
 */
-
+public class ActivateCamera {
+	/** Check if this device has a camera */
+	private boolean checkCameraHardware(Context context) {
+	    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+	        // this device has a camera
+	        return true;
+	    } else {
+	        // no camera on this device
+	        return false;
+	    }
+	}
+	
 	public static void main(String[] args){
-		Context context1  = new Context();
+		Context context1 = new Context();
 		if(context1.checkCameraHardware()){
 			Camera camera1 = null;
 			try{
@@ -76,3 +86,8 @@ Equivalent to takePicture(shutter, raw, null, jpeg).
 	}
   
 }
+	public static void ActivateCamera(){
+	}
+	public static void checkCameraHardware(){
+	}
+	}

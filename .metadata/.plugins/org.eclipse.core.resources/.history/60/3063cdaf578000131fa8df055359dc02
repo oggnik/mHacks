@@ -64,7 +64,7 @@ Equivalent to takePicture(shutter, raw, null, jpeg).
 */
 
 	public static void main(String[] args){
-		Context context1  = new Context();
+		Context context1;// = new Context();
 		if(context1.checkCameraHardware()){
 			Camera camera1 = null;
 			try{
