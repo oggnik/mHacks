@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+/Users/nickiogg/Documents/School/Spring 2014/mHacks/mHacks_git/.metadata/.plugins/org.eclipse.jdt.core
-344033230.index
-4111461148.index
