@@ -1,34 +1,29 @@
 package com.m4.purdue.mhacks.findthataddress;
 
-import android.annotation.TargetApi;
+import android.os.Bundle;
 import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+import android.support.v4.app.NavUtils;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class DisplayMessageActivity extends Activity {
+public class OCRActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_display_message);
+		setContentView(R.layout.activity_ocr);
 		// Show the Up button in the action bar.
-		Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
 		setupActionBar();
 		
-		
+		//Get the image
 		Intent intent = getIntent();
-		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-		
-		TextView textView = new TextView(this);
-		textView.setTextSize(40);
-		textView.setText(message);
-		
-		setContentView(textView);
+		String filePath = intent.getStringExtra(MainActivity.PATH);
+		//Just display the text for now
+		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
 	}
 
 	/**
