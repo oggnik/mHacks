@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
      * @param view
      */
     public void sendMessage(View view) {
-    	Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
+    	//Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
     	//Create an intent
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
     	
@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
     	EditText editText = (EditText) findViewById(R.id.edit_message);
     	String message = editText.getText().toString();
     	intent.putExtra(EXTRA_MESSAGE, message);
-    	System.out.println("Send Message");
+    	startActivity(intent);
     }
     
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DisplayMessageActivity extends Activity {
 
@@ -16,7 +17,9 @@ public class DisplayMessageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_message);
 		// Show the Up button in the action bar.
+		Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
 		setupActionBar();
+		
 		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
