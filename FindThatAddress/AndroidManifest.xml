@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.m4.purdue.mhacks.findthataddress.MainActivity" />
         </activity>
+        <activity
+            android:name="com.m4.purdue.mhacks.findthataddress.OCRActivity"
+            android:label="@string/title_activity_ocr"
+            android:parentActivityName="com.m4.purdue.mhacks.findthataddress.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.m4.purdue.mhacks.findthataddress.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

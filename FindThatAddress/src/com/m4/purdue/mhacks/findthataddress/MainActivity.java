@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public final static String EXTRA_MESSAGE = "com.m4.purdue.mhacks.findthataddress.MESSAGE";
+	public final static String PATH = "com.m4.purdue.mhacks.findthataddress.PATH";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +31,10 @@ public class MainActivity extends Activity {
      * @param view
      */
     public void sendMessage(View view) {
-    	//Toast.makeText(this, "You clicked the button", Toast.LENGTH_SHORT).show();
     	//Create an intent
-    	Intent intent = new Intent(this, DisplayMessageActivity.class);
+    	Intent intent = new Intent(this, OCRActivity.class);
     	
-    	//Get the text of the field and add it to the intent 
-    	EditText editText = (EditText) findViewById(R.id.edit_message);
-    	String message = editText.getText().toString();
-    	intent.putExtra(EXTRA_MESSAGE, message);
+    	intent.putExtra(PATH, "path/to/file");
     	startActivity(intent);
     }
     
