@@ -4,9 +4,13 @@ import Google.GData.Client;
 import Google.GData.Documents;
 */
 import java.io.BufferedReader;
+import java.io.IOException;
 
 import org.apache.http.client.HttpClient;
 
+import com.googlecode.tesseract.android.TessBaseAPI;
+
+import android.media.ExifInterface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -15,6 +19,9 @@ import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Build;
 
 public class OCRActivity extends Activity {
@@ -31,6 +38,58 @@ public class OCRActivity extends Activity {
 		String filePath = intent.getStringExtra(MainActivity.PATH);
 		//Just display the text for now
 		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
+		
+		try {
+			
+			Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+			
+			ExifInterface exif = new ExifInterface(filePath);
+			int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+			
+			//If the image is rotated, correct the rotation
+			int rotate = 0;
+			switch (exifOrientation) {
+				case ExifInterface.ORIENTATION_ROTATE_90:
+					rotate = 90;
+					break;
+				case ExifInterface.ORIENTATION_ROTATE_180:
+					rotate = 180;
+					break;
+				case ExifInterface.ORIENTATION_ROTATE_270:
+					rotate = 270;
+					break;
+			}
+			
+			if (rotate != 0) {
+				int width = bitmap.getWidth();
+				int height = bitmap.getHeight();
+				
+				Matrix mtx = new Matrix();
+				mtx.preRotate(rotate);
+				
+				//Rotating Bitmap & convert to ARGB_8888, required by tess
+				bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, mtx, false);
+			}
+			bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+			
+			//Do the OCR
+			
+			TessBaseAPI baseApi = new TessBaseAPI();
+			// DATA_PATH = Path to the storage
+			// lang = for which the language data exists, usually "eng"
+			baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
+			// Eg. baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
+			baseApi.setImage(bitmap);
+			//The text
+			String recognizedText = baseApi.getUTF8Text();
+			baseApi.end();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 		//Set up HTTP Client
 		/*String imageTextUrl = file.getExportLinks().get(filepath);	
