@@ -38,6 +38,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.m4.purdue.mhacks.findthataddress.MainActivity" />
         </activity>
+        
     </application>
 
 </manifest>
