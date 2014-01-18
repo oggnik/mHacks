@@ -3,19 +3,11 @@
 package com.m4.purdue.mhacks.findthataddress;
 
 import android.hardware.Camera;
-
 import android.hardware.Camera.Parameters;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.*;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 /* 1. Open the app, the camera should be turned on. In this case, 
  * there are 2 choices: 1) take a photo via camera. 2) pick up a 
  * photo from the library
