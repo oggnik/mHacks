@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ public class MainActivity extends Activity {
 	private Button take_button;
 	private Button load_button;
 	private String _path;
-	private boolean _taken;
 	
 	
 	public boolean checkCameraHardware(Context context) {
@@ -53,24 +51,9 @@ public class MainActivity extends Activity {
         Log.d("MainActivity", "On create main activity");
         
         load_button = (Button) findViewById(R.id.load_button);
-        //load_button.setOnClickListener(new LoadButtonClickHandler());
         take_button = (Button) findViewById(R.id.take_button);
-        //take_button.setOnClickListener(new TakeButtonClickHandler());
         
     }
-
-/*    public class TakeButtonClickHandler implements View.OnClickListener {
-    	public void onClick( View view ){
-    		Log.d("MainActivity", "TakeButtonClickHandler.onClick()" );
-    		startCameraActivity();
-    	}
-    }
-    public class LoadButtonClickHandler implements View.OnClickListener {
-    	public void onClick( View view ){
-    		Log.d("MainActivity", "LoadButtonClickHandler.onClick()" );
-    		loadImage();
-    	}
-    }*/
     
     public void startCameraActivity(View view) {
     	Log.d("MainActivity", "startCameraActivity()" );
@@ -117,10 +100,7 @@ public class MainActivity extends Activity {
     }
     
     private void onPhotoTaken() {
-    	Log.i( "MainActivity", "onPhotoTaken" );
-    	
-    	_taken = true;
-    	
+    	Log.d("MainActivity", "onPhotoTaken");
     	
     	//Create an intent for the OCR
        	Intent intent = new Intent(this, OCRActivity.class);
