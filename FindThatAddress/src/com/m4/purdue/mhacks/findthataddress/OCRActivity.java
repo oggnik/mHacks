@@ -49,7 +49,6 @@ public class OCRActivity extends Activity {
 		Log.d("OCRActivity", "Got the intent");
 		String filePath = intent.getStringExtra(MainActivity.IMAGE_PATH);
 		
-		Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
 		
 		
 		try {
@@ -119,10 +118,8 @@ public class OCRActivity extends Activity {
 			//Do the OCR
 			TessBaseAPI baseApi = new TessBaseAPI();
 			// DATA_PATH = Path to the storage
-			// lang = for which the language data exists, usually "eng"
 			Log.d("OCRActivity ", "init");
 			baseApi.init(DATA_PATH, "eng");
-			// Eg. baseApi.init("/mnt/sdcard/tesseract/tessdata/eng.traineddata", "eng");
 			Log.d("OCRActivity ", "setImage");
 			baseApi.setImage(bitmap);
 			//The text
@@ -131,8 +128,6 @@ public class OCRActivity extends Activity {
 			Log.d("OCRActivity ", recognizedText);
 			baseApi.end();
 			
-			//Map map = new Map();
-			//map.mapIt(recognizedText);
 			Intent mapIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?q=" + recognizedText));
 			startActivity(mapIntent);
 			Log.d("OCRActivity ", "Map Call");
