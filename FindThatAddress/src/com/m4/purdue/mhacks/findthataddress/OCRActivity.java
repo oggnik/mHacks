@@ -49,11 +49,13 @@ public class OCRActivity extends Activity {
 		Log.d("OCRActivity", "Got the intent");
 		String filePath = intent.getStringExtra(MainActivity.IMAGE_PATH);
 		
-		
+		Log.d("OCRActivity", filePath);
 		
 		try {
 			
-			Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+			BitmapFactory.Options options = new BitmapFactory.Options();
+	        options.inSampleSize = 4;
+			Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
 			Log.d("OCRActivity", "decoded bitmap");
 			ExifInterface exif = new ExifInterface(filePath);
 			int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);

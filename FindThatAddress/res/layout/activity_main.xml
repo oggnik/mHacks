@@ -9,15 +9,35 @@
     android:orientation="horizontal"
     tools:context=".MainActivity" >
     
-    <EditText android:id="@+id/edit_message"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
-    <Button 
+    <RelativeLayout android:layout_width="fill_parent"
+    				android:layout_height="wrap_content"
+    				android:layout_weight="6"
+    				android:gravity="center_horizontal|center_vertical">
+    
+	    <TextView android:id="@+id/field"
+	    		  android:layout_width="fill_parent"
+	    	      android:layout_height="wrap_content"
+	    	      android:text="No Image"
+	    	      android:gravity="center_horizontal"/>
+	    
+	    <ImageView android:id="@+id/image"
+	    		   android:layout_width="fill_parent"
+	    		   android:layout_height="wrap_content"/>
+    		   
+   	</RelativeLayout>
+
+    <Button
+        android:id="@+id/load_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send"
-        android:onClick="sendMessage" />
+        android:text="Load Photo"
+        android:onClick="loadImage" />
+    	   
+	<Button android:id="@+id/take_button"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="Take Photo"
+			android:layout_weight="2"
+			android:onClick="startCameraActivity" />
     
 </LinearLayout>
