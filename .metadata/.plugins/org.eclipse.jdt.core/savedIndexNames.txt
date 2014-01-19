@@ -1,2 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Ji\Documents\GitHub\mHacks\.metadata\.plugins\org.eclipse.jdt.core
-2697029450.index
