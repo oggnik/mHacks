@@ -57,7 +57,6 @@ public class MainActivity extends Activity {
         take_button = (Button) findViewById(R.id.take_button);
         //take_button.setOnClickListener(new TakeButtonClickHandler());
         
-        _path = Environment.getExternalStorageDirectory() + "/images/findThatAddress.jpg";
     }
 
 /*    public class TakeButtonClickHandler implements View.OnClickListener {
@@ -82,7 +81,10 @@ public class MainActivity extends Activity {
         	return;
         }
     	
-    	File file = new File( _path );
+    	
+    	File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+    	File file = new File( dir, "findThatAddress.jpg");
+    	_path = file.getAbsolutePath();
     	Uri outputFileUri = Uri.fromFile( file );
     	
     	Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );

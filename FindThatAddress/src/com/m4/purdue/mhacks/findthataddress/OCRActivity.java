@@ -49,7 +49,7 @@ public class OCRActivity extends Activity {
 		Log.d("OCRActivity", "Got the intent");
 		String filePath = intent.getStringExtra(MainActivity.IMAGE_PATH);
 		
-		Log.d("OCRActivity", filePath);
+		Log.d("OCRActivity", "path: " + filePath);
 		
 		try {
 			
