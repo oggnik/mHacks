@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -31,8 +32,6 @@ public class MainActivity extends Activity {
 	//For the camera
 	private Button take_button;
 	private Button load_button;
-	private ImageView _image;
-	private TextView _field;
 	private String _path;
 	private boolean _taken;
 	
@@ -53,13 +52,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         Log.d("MainActivity", "On create main activity");
         
-        if (!checkCameraHardware(this.getBaseContext())) {
-        	//If there is no camera, quit it
-        	finish();
-        }
-        
-        _image = (ImageView) findViewById(R.id.image);
-        _field = (TextView) findViewById(R.id.field);
         load_button = (Button) findViewById(R.id.load_button);
         //load_button.setOnClickListener(new LoadButtonClickHandler());
         take_button = (Button) findViewById(R.id.take_button);
@@ -83,6 +75,13 @@ public class MainActivity extends Activity {
     
     public void startCameraActivity(View view) {
     	Log.d("MainActivity", "startCameraActivity()" );
+    	
+    	if (!checkCameraHardware(this.getBaseContext())) {
+        	//If there is no camera, quit it
+        	Toast.makeText(this, "No Camera", Toast.LENGTH_SHORT).show();
+        	return;
+        }
+    	
     	File file = new File( _path );
     	Uri outputFileUri = Uri.fromFile( file );
     	
@@ -120,14 +119,6 @@ public class MainActivity extends Activity {
     	
     	_taken = true;
     	
-    	BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 4;
-    	
-    	Bitmap bitmap = BitmapFactory.decodeFile( _path, options );
-    	
-    	_image.setImageBitmap(bitmap);
-    	
-    	_field.setVisibility( View.GONE );
     	
     	//Create an intent for the OCR
        	Intent intent = new Intent(this, OCRActivity.class);

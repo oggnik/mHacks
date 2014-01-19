@@ -53,10 +53,9 @@ public class OCRActivity extends Activity {
 		
 		try {
 			
-			BitmapFactory.Options options = new BitmapFactory.Options();
-	        options.inSampleSize = 4;
-			Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
+			Bitmap bitmap = BitmapFactory.decodeFile(filePath);
 			Log.d("OCRActivity", "decoded bitmap");
+			Log.d("OCRActivity", "width: " + bitmap.getWidth());
 			ExifInterface exif = new ExifInterface(filePath);
 			int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
 			
@@ -83,10 +82,11 @@ public class OCRActivity extends Activity {
 				
 				//Rotating Bitmap & convert to ARGB_8888, required by tess
 				bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, mtx, false);
+				bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
 			}
-			bitmap = getResizedBitmap(bitmap, 350);
-			Log.d("OCRActivity", "Bitmap width: " + bitmap.getWidth());
+			bitmap = getResizedBitmap(bitmap, 512);
 			bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+			Log.d("OCRActivity", "Bitmap width: " + bitmap.getWidth());
 			
 			Log.d("OCRActivity", "Bitmap rotated");
 			
@@ -136,6 +136,7 @@ public class OCRActivity extends Activity {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Log.d("OCRActivity", "OCRActivity Catch Exception: " + e);
+			Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
 		}
 		
 	}
@@ -143,17 +144,18 @@ public class OCRActivity extends Activity {
 	private Bitmap getResizedBitmap(Bitmap image, int maxDimension) {
 		int width = image.getWidth();
 		int height = image.getHeight();
-		//Ratio is > 0 if width is bigger than height
-		double ratio = width / height;
-		if (ratio > 0) {
+		//Ratio is > 1 if width is bigger than height
+		double ratio = (width * 1.0) / height;
+		if (ratio > 1) {
 			width = maxDimension;
 			//Keep the aspect ratio
 			height = (int) (width / ratio);
 		} else {
 			height = maxDimension;
 			//Keep the aspect ratio
-			width = (int) (height / ratio);
+			width = (int) (height * ratio);
 		}
+		Log.d("OCRActivity", width + " " + height);
 		return Bitmap.createScaledBitmap(image, width, height, true);
 	}
 	
